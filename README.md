@@ -25,6 +25,16 @@ The project was created to practice the MVVM architecture, data binding, command
 - MVVM
 - XAML
 
+## Screenshots
+
+### Main
+
+![Main Page](Screenshots/MainPage.png)
+
+### Settings
+
+![Main Page](Screenshots/SettingsPage.png)
+
 ## How to run
 
 1. Clone the repository.
