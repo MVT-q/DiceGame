@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Dice_game.Controls"
+             x:Class="Dice_game.MainPage"
+             Title="">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" 
+                             Spacing="20">
+            <Button Text="⚙"
+                    Command="{Binding OpenSettingsCommand}"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    TextColor="White"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    ZIndex="1"/>
+            
+            <Label Text="🎲 Dice Game"
+                   FontSize="35"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"/>
+
+            <VerticalStackLayout Spacing="10" IsVisible="{Binding IsTwoPlayer}">
+
+                <Label Text="{Binding CurrentPlayerText}"
+                       FontSize="20"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"/>
+
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="40">
+
+                    <Label Text="{Binding Player1Score, StringFormat='Player1: {0}'}"
+                           FontSize="20"
+                           FontAttributes="Bold"/>
+                    <Label Text="{Binding Player2Score, StringFormat='Player2: {0}'}"
+                           FontSize="20"
+                           FontAttributes="Bold"/>
+
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <Frame CornerRadius="15"
+                   Padding="15"
+                   Margin="5"
+                   BorderColor="LightGray">
+
+                <VerticalStackLayout Spacing="15">
+                    
+                    <HorizontalStackLayout Spacing="60" 
+                                           HorizontalOptions="Center">
+                        
+                        <Label Text="Dice 1" 
+                               FontSize="18"/>
+                        <Label Text="Dice 2" 
+                               FontSize="18"/>
+                        
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout HorizontalOptions="Center" 
+                                           Spacing="25">
+                        
+                        <local:DiceView Value="{Binding Dice1}"/>
+                        <local:DiceView Value="{Binding Dice2}"/>
+                        
+                    </HorizontalStackLayout>
+                    
+                </VerticalStackLayout>
+            </Frame>
+
+            <HorizontalStackLayout Spacing="80" 
+                                   HorizontalOptions="Center">
+                
+                <Label Text="{Binding Dice1}"
+                       FontSize="25"/>
+
+                <Label Text="{Binding Dice2}"
+                       FontSize="25"/>
+                
+            </HorizontalStackLayout>
+
+            <Frame CornerRadius="15"
+                   Padding="15"
+                   Margin="5"
+                   BorderColor="LightGray">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label Text="{Binding RoundText}"
+                           FontSize="18"
+                           HorizontalOptions="Center"/>
+
+                    <Label Text="{Binding Sum}"
+                           HorizontalOptions="Center"/>
+
+                    <Label Text="{Binding ResultStatus}"
+                           TextColor="{Binding ResultColor}"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Center"/>
+
+                    <Label Text="{Binding Total}"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"/>
+
+                    <Label Text="{Binding Message}"
+                           FontSize="18"
+                           TextColor="Red"
+                           HorizontalOptions="Center"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <HorizontalStackLayout HorizontalOptions="Center" 
+                                   Spacing="20">
+                
+                <Button Text="🎲 Roll"
+                        BackgroundColor="Green"
+                        TextColor="White"
+                        CornerRadius="10"
+                        Padding="10"
+                        IsEnabled="{Binding IsRollEnabled}"
+                        Command="{Binding RollCommand}"/>
+
+                <Button Text="🔄 Reset"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        CornerRadius="10"
+                        Padding="10"
+                        Command="{Binding NewGameCommand}"/>
+                
+            </HorizontalStackLayout>
+
+            <Label Text="History"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   IsVisible="{Binding ShowHistory}"/>
+
+            <CollectionView ItemsSource="{Binding History}"
+                            IsVisible="{Binding ShowHistory}"
+                            HeightRequest="250">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="8"
+                               Margin="5"
+                               CornerRadius="10"
+                               BorderColor="LightGray">
+
+                            <Label Text="{Binding}"
+                                   FontSize="14"/>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

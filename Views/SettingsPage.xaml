@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dice_game.SettingsPage"
+             Title="SettingsPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" 
+                             Spacing="20">
+
+            <Label Text="⚙ Settings"
+                   FontSize="35"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <Frame CornerRadius="15"
+                   Padding="15"
+                   BorderColor="LightGray">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label Text="Rounds"
+                           FontAttributes="Bold"/>
+
+                    <HorizontalStackLayout Spacing="15" 
+                                           VerticalOptions="Center">
+
+                        <Stepper Minimum="1"
+                                 Maximum="20"
+                                 Value="{Binding MaxRounds}"
+                                 HorizontalOptions="StartAndExpand"/>
+
+                        <Label Text="{Binding MaxRounds}"
+                               FontSize="18"
+                               HorizontalOptions="End"/>
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="15"
+                   Padding="15"
+                   BorderColor="LightGray">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <HorizontalStackLayout Spacing="10" 
+                                           VerticalOptions="Center">
+
+                        <Label Text="Bonus rules"
+                               VerticalOptions="Center"
+                               HorizontalOptions="StartAndExpand"/>
+
+                        <Label Text="ℹ️"
+                               FontSize="16"
+                               VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowBonusInfoCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Switch IsToggled="{Binding UseBonuses}"
+                                VerticalOptions="Center"/>
+                        
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="10" 
+                                           VerticalOptions="Center">
+                        
+                        <Label Text="Show history"
+                               HorizontalOptions="StartAndExpand"
+                               VerticalOptions="Center"/>
+                        
+                        <Switch IsToggled="{Binding ShowHistory}"
+                                VerticalOptions="Center"/>
+                        
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="10" 
+                                           VerticalOptions="Center">
+                        
+                        <Label Text="Two players"
+                               HorizontalOptions="StartAndExpand"
+                               VerticalOptions="Center"/>
+
+                        <Switch IsToggled="{Binding IsTwoPlayer}"
+                                VerticalOptions="Center"/>
+                        
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Button Text="Apply"
+                        BackgroundColor="Green"
+                        TextColor="White"
+                        CornerRadius="10"
+                        Command="{Binding ApplyCommand}"/>
+
+                <Button Text="Reset"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        CornerRadius="10"
+                        Command="{Binding ResetCommand}"/>
+
+                <Button Text="Close"
+                        BackgroundColor="#E0E0E0"
+                        TextColor="Black"
+                        CornerRadius="10"
+                        Command="{Binding CloseCommand}"/>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
